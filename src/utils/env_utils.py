@@ -27,8 +27,9 @@ def load_env_vars() -> Dict[str, Optional[str]]:
 
 def validate_env_vars(env_vars: Dict[str, Optional[str]]) -> Dict[str, str]:
     """Validate that required environment variables are set and return validated dict."""
+    # Note: API keys are optional - we use DefaultAzureCredential (Entra ID) when keys are not available
     required_vars = [
-        'phi_4_endpoint', 'phi_4_api_key', 'phi_4_api_version', 'phi_4_deployment', 'MCP_SERVER_URL'
+        'phi_4_endpoint', 'phi_4_api_version', 'phi_4_deployment', 'MCP_SERVER_URL'
     ]
     missing_vars = [var for var in required_vars if not env_vars.get(var)]
     if missing_vars:
